@@ -67,8 +67,103 @@ MonoBehaviour:
     m_Id: 11f84445-ca6f-4593-b781-2094cdaff459
     m_Processors: 
     m_Interactions: 
-    m_SingletonActionBindings: []
+    m_SingletonActionBindings:
+    - m_Name: Keyboard 2D Vector
+      m_Id: 971adce9-8397-480d-95f5-e794bd655cf9
+      m_Path: 2DVector
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Movement
+      m_Flags: 4
+    - m_Name: up
+      m_Id: aa55c75c-323f-4f40-9b93-b582f49af48d
+      m_Path: <Keyboard>/w
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Movement
+      m_Flags: 8
+    - m_Name: down
+      m_Id: aa9c6233-c518-43c6-8afe-f74825e67216
+      m_Path: <Keyboard>/s
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Movement
+      m_Flags: 8
+    - m_Name: left
+      m_Id: b90df8f2-2b07-4a3c-8e38-b809c04edb67
+      m_Path: <Keyboard>/a
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Movement
+      m_Flags: 8
+    - m_Name: right
+      m_Id: 4ed7cc5d-fb5b-4952-af6e-fa533c9ce3fc
+      m_Path: <Keyboard>/d
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Movement
+      m_Flags: 8
+    - m_Name: Arrow 2D Vector
+      m_Id: 7e69dd42-20c1-4f1a-bd20-52ff9d552ba4
+      m_Path: 2DVector
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Movement
+      m_Flags: 4
+    - m_Name: up
+      m_Id: 3b2e9d38-f64d-4d48-a071-9b6a7a6e392e
+      m_Path: <Keyboard>/upArrow
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Movement
+      m_Flags: 8
+    - m_Name: down
+      m_Id: 8eb642c1-2fc4-403d-b0dd-1724f0f8730c
+      m_Path: <Keyboard>/downArrow
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Movement
+      m_Flags: 8
+    - m_Name: left
+      m_Id: d846c4c8-455f-4012-ae6c-f0fa40cbc4c3
+      m_Path: <Keyboard>/leftArrow
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Movement
+      m_Flags: 8
+    - m_Name: right
+      m_Id: bea949da-4fef-49a8-b6ff-bc0e727b583a
+      m_Path: <Keyboard>/rightArrow
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Movement
+      m_Flags: 8
+    - m_Name: 
+      m_Id: 794d7cc9-ae4d-4613-a809-bc4d1aacaa93
+      m_Path: <Gamepad>/leftStick
+      m_Interactions: 
+      m_Processors: 
+      m_Groups: 
+      m_Action: Movement
+      m_Flags: 0
     m_Flags: 0
+  controlSpeed: 25
+  xRange: 10
+  yRange: 8.5
+  smoothInputSpeed: 0.2
+  positionPitchFactor: -2
+  controlPitchFactor: -20
+  positionYawFactor: 2
 --- !u!1001 &4732020676494129363
 PrefabInstance:
   m_ObjectHideFlags: 0
