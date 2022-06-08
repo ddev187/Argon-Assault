@@ -1,12 +1,12 @@
-using UnityEngine.InputSystem;
+﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerControls : MonoBehaviour
 {
-    [SerializeField] InputAction movement;
-    [SerializeField] float controlSpeed;
-    [SerializeField] float xRange = 5f;
-    [SerializeField] float yRange = 5f;
+    [SerializeField] float controlSpeed = 10f;
+    [SerializeField] float xRange = 10f;
+    [SerializeField] float yRange = 7f;
 
     [SerializeField] float positionPitchFactor = -2f;
     [SerializeField] float controlPitchFactor = -10f;
@@ -14,21 +14,6 @@ public class PlayerControls : MonoBehaviour
     [SerializeField] float controlRollFactor = -20f;
 
     float xThrow, yThrow;
-
-    void Start()
-    {
-        
-    }
-
-    void OnEnable()
-    {
-        movement.Enable();
-    }
-
-    void OnDisable()
-    {
-        movement.Disable();
-    }
 
     void Update()
     {
@@ -40,7 +25,7 @@ public class PlayerControls : MonoBehaviour
     {
         float pitchDueToPosition = transform.localPosition.y * positionPitchFactor;
         float pitchDueToControlThrow = yThrow * controlPitchFactor;
-
+        
         float pitch = pitchDueToPosition + pitchDueToControlThrow;
         float yaw = transform.localPosition.x * positionYawFactor;
         float roll = xThrow * controlRollFactor;
@@ -50,18 +35,17 @@ public class PlayerControls : MonoBehaviour
 
     void ProcessTranslation()
     {
-        xThrow = movement.ReadValue<Vector2>().x;
-        yThrow = movement.ReadValue<Vector2>().y;
+        xThrow = Input.GetAxis("Horizontal");
+        yThrow = Input.GetAxis("Vertical");
 
-        float xOffset = xThrow * controlSpeed * Time.deltaTime;
+        float xOffset = xThrow * Time.deltaTime * controlSpeed;
         float rawXPos = transform.localPosition.x + xOffset;
         float clampedXPos = Mathf.Clamp(rawXPos, -xRange, xRange);
 
-        float yOffset = yThrow * controlSpeed * Time.deltaTime;
+        float yOffset = yThrow * Time.deltaTime * controlSpeed;
         float rawYPos = transform.localPosition.y + yOffset;
-        float clampedYPos = Mathf.Clamp(rawYPos, -yRange + 3, yRange);
+        float clampedYPos = Mathf.Clamp(rawYPos, -yRange, yRange);
 
-        transform.localPosition = new Vector3
-        (clampedXPos, clampedYPos, transform.localPosition.z);
+        transform.localPosition = new Vector3(clampedXPos, clampedYPos, transform.localPosition.z);
     }
 }
