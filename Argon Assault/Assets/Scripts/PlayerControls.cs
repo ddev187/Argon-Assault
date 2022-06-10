@@ -1,16 +1,25 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerControls : MonoBehaviour
 {
+    [Header("General Setup Settings")]
+    [Tooltip("How fast ship moves up and down based upon player input")]
     [SerializeField] float controlSpeed = 10f;
-    [SerializeField] float xRange = 10f;
-    [SerializeField] float yRange = 7f;
+    [Tooltip("Clamping range on the x axis of the ship")] [SerializeField] float xRange = 10f;
+    [Tooltip("Clamping range on the y axis of the ship")] [SerializeField] float yRange = 7f;
+    [SerializeField] ParticleSystem[] lasers;
 
+    [Header("Yaw, roll, and pitch in relation to the player's input/position")]
+    [Tooltip("How much pitch will be applied in relation to the player's position")] 
     [SerializeField] float positionPitchFactor = -2f;
+    [Tooltip("How much pitch will be applied in relation to the player's input")] 
     [SerializeField] float controlPitchFactor = -10f;
+    [Tooltip("How much yaw will be applied in relation to the player's position")] 
     [SerializeField] float positionYawFactor = 2f;
+    [Tooltip("How much yaw will be applied in relation to the player's input")] 
     [SerializeField] float controlRollFactor = -20f;
 
     float xThrow, yThrow;
@@ -19,6 +28,7 @@ public class PlayerControls : MonoBehaviour
     {
         ProcessTranslation();
         ProcessRotation();
+        ProcessFiring();
     }
 
     void ProcessRotation()
@@ -47,5 +57,26 @@ public class PlayerControls : MonoBehaviour
         float clampedYPos = Mathf.Clamp(rawYPos, -yRange, yRange);
 
         transform.localPosition = new Vector3(clampedXPos, clampedYPos, transform.localPosition.z);
+    }
+
+    void ProcessFiring()
+    {
+        if(Input.GetButton("Fire1"))
+        {
+            SetLasersActive(true);
+        }
+        else
+        {
+            SetLasersActive(false);
+        }
+    }
+
+    void SetLasersActive(bool isActive)
+    {
+        foreach(ParticleSystem laser in lasers)
+        {
+            var emissionModule = laser.GetComponent<ParticleSystem>().emission;
+            emissionModule.enabled = isActive;
+        }
     }
 }
