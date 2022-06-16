@@ -1,3 +1,4 @@
+using System.Reflection.Emit;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -11,14 +12,24 @@ public class CollisionHandler : MonoBehaviour
 
     [SerializeField] ParticleSystem explosionVFX;
     [SerializeField] MeshRenderer[] shipMeshRenderers;
+
     void OnTriggerEnter(Collider other)
     {
         StartCrashSequence();
     }
+
+    void DisableLasersAfterCrash()
+    {
+        var playerControlsScript = gameObject.GetComponent<PlayerControls>();
+        playerControlsScript.SetLasersActive(false);
+    }
+
     void StartCrashSequence()
     {
+        DisableLasersAfterCrash();
         GetComponent<PlayerControls>().enabled = false;
         GetComponent<BoxCollider>().enabled = false;
+        
         if(!explosionVFX.isPlaying)
         {
             explosionVFX.Play();

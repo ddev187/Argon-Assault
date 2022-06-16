@@ -71,7 +71,7 @@ public class PlayerControls : MonoBehaviour
         }
     }
 
-    void SetLasersActive(bool isActive)
+    public void SetLasersActive(bool isActive)
     {
         foreach(ParticleSystem laser in lasers)
         {
